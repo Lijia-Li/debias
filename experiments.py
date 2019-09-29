@@ -904,11 +904,11 @@ def debias_bolukbasi(embedding, subspace, out_path, exclusions=None):
     """
     if out_path.exists():
         return WordEmbedding.load_word2vec_file(out_path)
-    if len(subspace) != embedding.vectors.shape[1]:
-        raise ValueError(
-            f'Subspace has {len(subspace)} dimensions '
-            f'but vectors have {embedding.vectors.shape[1]}.'
-        )
+    # if len(subspace) != embedding.vectors.shape[1]:
+    #     raise ValueError(
+    #         f'Subspace has {len(subspace)} dimensions '
+    #         f'but vectors have {embedding.vectors.shape[1]}.'
+    #     )
     new_vectors = _bolukbasi_debias(embedding, subspace, exclusions)
     new_vectors = normalize(new_vectors)
     new_embedding = WordEmbedding.from_vectors(embedding.words, new_vectors)
